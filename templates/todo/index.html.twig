@@ -1,0 +1,38 @@
+{# templates/todo/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+    <div class="col-12">
+        <a href="/todo/supprimer" class="btn btn-danger">Supprimer taches terminées</a>
+        <table class="table table-hover table-borderless table-striped table-sm">
+            <thead>
+                <tr>
+                    <th class="text-center col-1 align-middle">Id</th>
+                    <th class="text-center col-8 align-middle">Nom</th>
+                    <th class="text-center col-1 align-middle">Etat</th>
+                    <th class="text-center col-2 align-middle">
+                        <a href="/form/new" class="btn btn-primary">Ajouter</a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for todo in todos %}
+                    <tr>
+                        <td class="text-center rounded-3">{{ todo.Id }}</td>
+                        <td class="text-center rounded-3">{{ todo.Label }}</td>
+                        <td class="text-center rounded-3">{% if todo.Completed == true %}
+                            Terminée
+                        {% else %}
+                            Non terminée
+                        {% endif %} </td>
+                        <td class="text-center rounded-3">
+                            <a href="/form/edit/{{ todo.Id }}" class="btn btn-warning">Modifier</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
